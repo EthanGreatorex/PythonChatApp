@@ -11,7 +11,7 @@ def receive_messages(client):
         try:
             message = client.recv(1024).decode('utf-8')
             if message:
-                print(message)
+                print(f"{message}\n")
             else:
                 #* If the server closes the connection
                 print("Connection closed by the server.")
@@ -24,7 +24,8 @@ def receive_messages(client):
 # * Function to handle sending messages to the server
 def send_messages(client):
     while True:
-        message = input()
+        message = input("")
+        print("\n")
         client.send(message.encode('utf-8'))
 
 
@@ -34,7 +35,6 @@ def main():
 
     try:
         client.connect((HOST_TARGET, PORT_TARGET))
-        print(f"Connected to {HOST_TARGET}:{PORT_TARGET}")
 
         # * Start a thread to receive messages from the server
         receive_thread = threading.Thread(target=receive_messages, args=(client,))
@@ -43,6 +43,7 @@ def main():
         # * Send the username to the server
         username = input("Enter your username: ")
         client.send(username.encode('utf-8'))
+        print("\n")
 
         # * Start a thread to send messages to the server
         send_thread = threading.Thread(target=send_messages, args=(client,))

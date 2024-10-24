@@ -24,7 +24,6 @@ def handle_client(client, address):
     print(f"Connection established with {address}")
 
     # * Receive and set username
-    client.send("Enter your username: ".encode('utf-8'))
     username = client.recv(1024).decode('utf-8')
     print(f"{username} has joined the chat!")
     broadcast(f"{username} has joined the chat!\n".encode('utf-8'), client)
@@ -36,7 +35,7 @@ def handle_client(client, address):
             if message:
                 # * Format the message with time and username
                 current_time = datetime.now().strftime("%H:%M")
-                formatted_message = f"{current_time}: {username} {message.decode('utf-8')}"
+                formatted_message = f"({current_time} {username}) {message.decode('utf-8')}"
                 print(formatted_message)
                 broadcast(formatted_message.encode('utf-8'), client)
             else:
