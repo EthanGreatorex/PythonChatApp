@@ -21,9 +21,9 @@ The overall experience messaging using the CLI is not enjoyable and lacks readab
 ## GUI Progress
 The creation of a usable user interface will be created using the Tkinter module. The user will have a simple to use interface for sending and viewing messages.
 Functionality goals:
-    * Save and reload chat history on application restart
-    * Remove any un-neccessary information about the server connection from the user and maintain simplisity
-    * Display messages in a clear and undersandable way
+- Save and reload chat history on application restart
+- Remove any un-neccessary information about the server connection from the user and maintain simplisity
+- Display messages in a clear and undersandable way
 
 ### Initial design of the application in its early stage
 ![image](https://github.com/user-attachments/assets/dedc1329-1ee9-417b-8668-1cd12a18e8a7)
