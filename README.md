@@ -1,6 +1,8 @@
 # PythonChatApp
 
 The goal of this app is to create a local network chatting application. 
+The first iteration will be using a command line inteface.
+I want to further develop this to use a GUI using the module Tkinter.
 
 ## Modules Used
 The python module sockets was used to handle connections between the client and server and to allow for broadcasting of messages.
