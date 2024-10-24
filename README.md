@@ -9,7 +9,11 @@ The python module sockets was used to handle connections between the client and 
 Threading module was used to allow for multiple clients to connect to the server, and send messages simultaneously.
 DateTime module is used to show the time of when the message was sent by the user.
 
-## Here is a preview of the command line interface version currently in development.
+## CLI Progress
+This reason behind the command line interface version of this application was to understand how the Sockets module works & the connection between the client and server.
+The overall experience messaging using the CLI is not enyjoyable and lacks readability and proper formatting.
+
+### Current design of the commmand line interface version
 
 
 ![Screenshot 2024-10-24 084514](https://github.com/user-attachments/assets/9933941b-7edb-46f2-8104-810a5160dada)
