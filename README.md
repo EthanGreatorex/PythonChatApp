@@ -9,4 +9,5 @@ DateTime module is used to show the time of when the message was sent by the use
 
 ## Here is a preview of the command line interface version currently in development.
 
-![Screenshot 2024-10-24 084514](https://github.com/user-attachments/assets/2b898f0f-27e1-42d0-b910-068cddefb1e8)
+
+![Screenshot 2024-10-24 084514](https://github.com/user-attachments/assets/9933941b-7edb-46f2-8104-810a5160dada)
