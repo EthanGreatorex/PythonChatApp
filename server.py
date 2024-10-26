@@ -11,12 +11,11 @@ clients = []  #* List to keep track of all connected clients
 # * Broadcast messages to all connected clients
 def broadcast(message, sender_client):
     for client in clients:
-        if client != sender_client:  #* Don't send the message to the sender
-            try:
-                client.send(message)
-            except:
-                #* Remove client if unable to send message
-                clients.remove(client)
+        try:
+            client.send(message)
+        except:
+            #* Remove client if unable to send message
+            clients.remove(client)
 
 
 # * Handle individual client connections
@@ -25,8 +24,7 @@ def handle_client(client, address):
 
     # * Receive and set username
     username = client.recv(1024).decode('utf-8')
-    print(f"{username} has joined the chat!")
-    broadcast(f"{username} has joined the chat!\n".encode('utf-8'), client)
+    broadcast(f"{username} has joined the chat!".encode('utf-8'),client)
 
     # * Handle messages sent by the client
     while True:
