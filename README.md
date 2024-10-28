@@ -7,7 +7,8 @@ I want to further develop this to use a GUI using the module Tkinter.
 ## Modules Used
 The python module sockets was used to handle connections between the client and server and to allow for broadcasting of messages.
 Threading module was used to allow for multiple clients to connect to the server, and send messages simultaneously.
-DateTime module is used to show the time of when the message was sent by the user.
+DateTime module is used to show the time of when the message was sent by the user. Queue module is used to be able to execute processes 
+on the correct thread when needed. 
 
 ## CLI Progress
 This reason behind the command line interface version of this application was to understand how the Sockets module works & the connection between the client and server.
