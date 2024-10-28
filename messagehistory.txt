@@ -1,0 +1,8 @@
+UserOne has joined the chat!
+UserTwo has joined the chat!
+(12:30 UserTwo) Hello UserOne!
+(12:30 UserTwo) Hello UserOne!
+(12:30 UserOne) Hello UserTwo! How are you?
+(12:30 UserOne) Hello UserTwo! How are you?
+UserTwo has left the chat.
+

@@ -1,6 +1,7 @@
 import socket
 import threading
 import tkinter as tk
+import queue
 
 HOST_TARGET = '127.0.0.1'
 PORT_TARGET = 1234
@@ -19,14 +20,14 @@ def username_select():
     window = tk.Tk()
     window.title("Friendly Chat")
     window.geometry("400x400")
-    window.configure(bg="#101013")
+    window.configure(bg="#181825")
     window.resizable(False, False)
     center_window(window, 700, 900)
 
     greeting_label = tk.Label(
         window,
         text="Welcome to Friendly Chat!\nPlease enter your username",
-        bg="#101013",
+        bg="#181825",
         fg="#ffffff",
         font=("Arial", 24)
     )
@@ -35,7 +36,7 @@ def username_select():
     username_input_box = tk.Entry(
         window,
         width=30,
-        bg="#222329",
+        bg="#1e1e2e",
         fg="#ffffff",
         borderwidth=0,
         font=("Arial", 24))
@@ -45,7 +46,7 @@ def username_select():
         window,
         text="Start Chatting!",
         width=15,
-        bg="#222329",
+        bg="#f0934b",
         fg="#ffffff",
         borderwidth=0,
         font=("Arial", 16),
@@ -57,47 +58,45 @@ def username_select():
 
 
 def main(username):
-    global window, message_result_box, message_input_box, client
+    global window, message_result_box, message_input_box, client, msg_queue
 
     window.destroy()
+    msg_queue = queue.Queue()
 
-    def update_message_box():
-        message_history_list = []
-        with open('messagehistory.txt', 'r') as f:
-            for line in f:
-                message_history_list.append(line)
-        message_result_box.delete(1.0, "end")
-        for message in message_history_list:
-            message_result_box.insert("end", message)
+    def update_history(message):
+        with open('messagehistory.txt', 'a') as f:
+            f.write(f"{message}\n")
 
-    def receive_messages(client):
-        while True:
-            try:
+    def receive_messages():
+        try:
+            while True:
                 message = client.recv(1024).decode('utf-8')
                 if message:
-                    print(f"Received message: {message}")  # Debugging line
-                    with open('messagehistory.txt', 'a') as f:
-                        f.write(f"{message}\n")
-                    window.after(0, update_message_box)  # Ensure the update happens in the main thread
+                    print(f"Received message: {message}")
+                    msg_queue.put(message)
+                    update_history(message)
                 else:
                     print("Connection closed by the server.")
                     break
-            except Exception as e:
-                print(f"Exception occurred: {e}")  # Debugging line
-                break
+        except Exception as e:
+            print(f"Exception occurred: {e}")
 
     def send_messages(client, message):
-        if message.strip():  # Only send non-empty messages
+        if message.strip():
             client.send(message.encode('utf-8'))
-            message_input_box.delete(0, 'end')  # Clear input box after sending
-            with open('messagehistory.txt', 'a') as f:
-                f.write(f"Me: {message}\n")
-            window.after(0, update_message_box)  # Ensure the update happens in the main thread
+            message_input_box.delete(0, tk.END)
+
+    def process_queue():
+        while not msg_queue.empty():
+            message = msg_queue.get()
+            message_result_box.insert(tk.END, message + "\n")
+            message_result_box.yview(tk.END)  #
+        window.after(100, process_queue)
 
     window = tk.Tk()
     window.title("Friendly Chat")
     window.geometry("700x900")
-    window.configure(bg="#101013")
+    window.configure(bg="#181825")
     window.resizable(False, False)
 
     center_window(window, 700, 900)
@@ -106,19 +105,18 @@ def main(username):
         window,
         width=30,
         height=100,
-        bg="#101013",
+        bg="#181825",
         fg="#ffffff",
         borderwidth=0,
         font=("Arial", 16),
         wrap="word"
     )
     message_result_box.pack(expand=True, fill="both", side="left")
-    update_message_box()
 
     message_input_box = tk.Entry(
         window,
         width=30,
-        bg="#222329",
+        bg="#1e1e2e",
         fg="#ffffff",
         borderwidth=0,
         font=("Arial", 24))
@@ -128,7 +126,7 @@ def main(username):
         window,
         text="Send :)",
         width=10,
-        bg="#222329",
+        bg="#fc9e50",
         fg="#ffffff",
         borderwidth=0,
         font=("Arial", 16),
@@ -142,13 +140,16 @@ def main(username):
     try:
         client.connect((HOST_TARGET, PORT_TARGET))
 
-        receive_thread = threading.Thread(target=receive_messages, args=(client,))
+        receive_thread = threading.Thread(target=receive_messages)
+        receive_thread.daemon = True
         receive_thread.start()
 
         client.send(username.encode('utf-8'))
-
     except Exception as e:
         print(f"Unable to connect to {HOST_TARGET}:{PORT_TARGET}. Error: {str(e)}")
+
+    window.after(100, process_queue)
+    window.mainloop()
 
 
 if __name__ == "__main__":
