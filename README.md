@@ -1,5 +1,9 @@
 # PythonChatApp
 
+## Live demo
+https://youtu.be/j2sPXdVwYoU
+
+## About
 The goal of this app is to create a local network chatting application. 
 The first iteration will be using a command line inteface.
 I want to further develop this to use a GUI using the module Tkinter.
@@ -32,6 +36,3 @@ Functionality goals:
 ### The final design
 ![image](https://github.com/user-attachments/assets/ffce20a0-ea3e-419f-a587-548ec512feda)
 ![image](https://github.com/user-attachments/assets/38b0fa9d-096e-42b9-b2bd-bf7927232df2)
-
-## Live demo
-https://youtu.be/j2sPXdVwYoU
