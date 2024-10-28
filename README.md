@@ -1,6 +1,7 @@
 # PythonChatApp
 
 ## Live demo
+I am not sure why the video looks a bit washed, but it shows the application running.
 https://youtu.be/j2sPXdVwYoU
 
 ## About
