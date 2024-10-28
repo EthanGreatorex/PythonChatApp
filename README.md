@@ -27,3 +27,10 @@ Functionality goals:
 
 ### Initial design of the application in its early stage
 ![image](https://github.com/user-attachments/assets/dedc1329-1ee9-417b-8668-1cd12a18e8a7)
+
+### The final design
+![image](https://github.com/user-attachments/assets/ffce20a0-ea3e-419f-a587-548ec512feda)
+![image](https://github.com/user-attachments/assets/38b0fa9d-096e-42b9-b2bd-bf7927232df2)
+
+## Live demo
+https://youtu.be/j2sPXdVwYoU
