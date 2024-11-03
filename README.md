@@ -2,7 +2,7 @@
 
 ## Live demo
 I am not sure why the video looks a bit washed, but it shows the application running.
-https://youtu.be/j2sPXdVwYoU
+
 
 ## About
 The goal of this app is to create a local network chatting application. 
