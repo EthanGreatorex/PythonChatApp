@@ -1,7 +1,8 @@
 # PythonChatApp
 
 ## Live demo
-I am not sure why the video looks a bit washed, but it shows the application running.
+Here is a video displaying the chat application running on my personal machine
+https://youtu.be/XCFPc38gCDg
 
 
 ## About
